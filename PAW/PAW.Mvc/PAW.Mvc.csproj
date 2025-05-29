@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\PAW.Architecture\PAW.Architecture\PAW.Architecture.csproj" />
+    <ProjectReference Include="..\PAW.Architecture\PAW.Architecture.csproj" />
     <ProjectReference Include="..\PAW.Models\PAW.Models.csproj" />
     <ProjectReference Include="..\PAW.Services\PAW.Services.csproj" />
   </ItemGroup>
