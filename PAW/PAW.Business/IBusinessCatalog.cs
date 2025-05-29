@@ -6,4 +6,5 @@ internal interface IBusinessCatalog
     Task<IEnumerable<Catalog>> GetAllCatalogAsync();
     Task<Catalog> GetCatalogAsync(int id);
     Task<bool> SaveCatalogAsync(Catalog catalog);
+
 }

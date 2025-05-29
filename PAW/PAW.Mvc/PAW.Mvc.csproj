@@ -7,8 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\PAW.Architecture\PAW.Architecture\PAW.Architecture.csproj" />
-    <ProjectReference Include="..\PAW.Models\PAW.Models.csproj" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\PAW.Architecture\PAW.Architecture\PAW.Architecture.csproj" />
+    <ProjectReference Include="..\PAW.Models\PAW.Models.csproj" />
+    <ProjectReference Include="..\PAW.Services\PAW.Services.csproj" />
+  </ItemGroup>
 </Project>

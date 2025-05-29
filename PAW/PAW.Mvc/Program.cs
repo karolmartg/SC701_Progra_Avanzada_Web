@@ -1,10 +1,12 @@
 using APW.Architecture;
+using PAW.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<IRestProvider, RestProvider>();
+builder.Services.AddScoped<ICatalogService, CatalogService>();
 
 
 var app = builder.Build();
