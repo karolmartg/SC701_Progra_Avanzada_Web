@@ -1,0 +1,20 @@
+# Build results
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio
+.vs/
+
+# Dependency directories
+packages/
+node_modules/
+
+# Others
+*.log
+*.db
+*.sqlite
+.env

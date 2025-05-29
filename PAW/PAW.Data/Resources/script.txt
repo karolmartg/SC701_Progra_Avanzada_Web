@@ -1,0 +1,11 @@
+﻿dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.EntityFrameworkCore.Tools
+dotnet ef dbcontext scaffold "Server=<<servername>>;Database=APDatadb;Trusted_Connection=True;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -o Models
+ 
+dotnet ef dbcontext scaffold "Server=LAPTOP-SSTNDH93\SQLEXPRESS;Database=CatalogDB;Trusted_Connection=True;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -o Models
+ 
+dotnet tool install --global dotnet-ef
+dotnet tool update --global dotnet-ef
+ 
+https://learn.microsoft.com/en-us/ef/core/managing-schemas/scaffolding/?tabs=dotnet-core-cli
