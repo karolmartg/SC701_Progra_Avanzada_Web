@@ -17,5 +17,8 @@ namespace PAW.Mvc.Models
 
         [BindNever]
         public string Hash { get; set; }
+
+        [JsonPropertyName("modified")]
+        public DateTime Modified { get; set; }
     }
 }

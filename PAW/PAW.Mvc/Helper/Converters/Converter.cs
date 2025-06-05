@@ -1,4 +1,4 @@
-﻿using PAW.Models;
+﻿using PAW.Models.Entities;
 using PAW.Mvc.Models;
 
 namespace PAW.Mvc.Helper.Converters
@@ -10,7 +10,8 @@ namespace PAW.Mvc.Helper.Converters
             return new CatalogViewModel
             {
                 Id = catalog.Identifier,
-                Name = catalog.Name
+                Name = catalog.Name,
+                Modified = catalog.Modified,
             };
         }
     }

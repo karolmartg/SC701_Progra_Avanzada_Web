@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using PAW.Models.Entities;
 
 namespace PAW.Models;
 
@@ -33,6 +34,7 @@ public partial class CatalogDbContext : DbContext
             entity.Property(e => e.Name)
                 .HasMaxLength(50)
                 .HasColumnName("name");
+            entity.Property(e => e.Modified);
         });
 
         OnModelCreatingPartial(modelBuilder);

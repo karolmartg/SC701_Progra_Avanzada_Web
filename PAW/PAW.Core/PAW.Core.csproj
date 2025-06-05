@@ -7,10 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PAW.Core\PAW.Core.csproj" />
-    <ProjectReference Include="..\PAW.Data\PAW.Data.csproj" />
     <ProjectReference Include="..\PAW.Models\PAW.Models.csproj" />
-    <ProjectReference Include="..\PAW.Repositories\PAW.Repositories.csproj" />
   </ItemGroup>
 
 </Project>

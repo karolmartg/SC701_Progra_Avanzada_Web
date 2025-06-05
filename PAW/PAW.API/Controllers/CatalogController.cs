@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PAW.Business;
-using PAW.Models;
+using PAW.Models.Entities;
 
 namespace PAW.API.Controllers
 {
@@ -8,7 +8,7 @@ namespace PAW.API.Controllers
     [Route("[controller]")]
     public class CatalogController(IBusinessCatalog businessCatalog) : Controller
     {
-        private readonly IBusinessCatalog businessCatalog = businessCatalog;
+        //private readonly IBusinessCatalog businessCatalog = businessCatalog;
 
         [HttpGet(Name = "GetCatalogs")]
         public async Task<IEnumerable<Catalog>> GetAll()
@@ -24,9 +24,13 @@ namespace PAW.API.Controllers
         }
 
         [HttpPost]
-        public async Task<bool> Save([FromBody] Catalog catalog)
+        public async Task<bool> Save([FromBody] IEnumerable<Catalog> catalogs)
         {
-            return await businessCatalog.SaveCatalogAsync(catalog);
+            foreach (var item in catalogs)
+            {
+                await businessCatalog.SaveCatalogAsync(item);
+            }
+            return true;    
         }
 
         [HttpDelete]
