@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using PAW.Data.Models;
 using PAW.Models.Entities;
 
 namespace PAW.Models;
@@ -36,6 +37,44 @@ public partial class CatalogDbContext : DbContext
                 .HasColumnName("name");
             entity.Property(e => e.Modified);
         });
+
+        modelBuilder.Entity<CatalogTask>(entity =>
+        {
+            entity.HasNoKey();
+
+            entity.Property(e => e.CreatedBy)
+                .HasMaxLength(50)
+                .HasColumnName("createdBy");
+            entity.Property(e => e.CreatedDate)
+                .HasColumnType("datetime")
+                .HasColumnName("createdDate");
+            entity.Property(e => e.Description)
+                .HasMaxLength(200)
+                .HasColumnName("description");
+            entity.Property(e => e.Id)
+                .ValueGeneratedOnAdd()
+                .HasColumnType("numeric(18, 0)")
+                .HasColumnName("id");
+            entity.Property(e => e.ModifiedBy)
+                .HasMaxLength(50)
+                .HasColumnName("modifiedBy");
+            entity.Property(e => e.ModifiedDate)
+                .HasColumnType("datetime")
+                .HasColumnName("modifiedDate");
+            entity.Property(e => e.Name)
+                .HasMaxLength(50)
+                .HasColumnName("name");
+            entity.Property(e => e.Status)
+                .HasColumnType("numeric(18, 0)")
+                .HasColumnName("status");
+            entity.Property(e => e.TaskId)
+                .HasColumnType("numeric(18, 0)")
+                .HasColumnName("taskId");
+            entity.Property(e => e.TaskType)
+                .HasColumnType("numeric(5, 0)")
+                .HasColumnName("taskType");
+        });
+
 
         OnModelCreatingPartial(modelBuilder);
     }

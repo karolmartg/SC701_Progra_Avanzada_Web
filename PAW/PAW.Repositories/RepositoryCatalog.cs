@@ -30,15 +30,9 @@ namespace PAW.Repositories
     }
     public class RepositoryCatalog : RepositoryBase<Catalog>, IRepositoryCatalog
     {
-        public async Task<bool> CheckBeforeSavingAsync(Catalog entity)
+        public Task<bool> CheckBeforeSavingAsync(Catalog entity)
         {
-            var exists = await ExistsAsync(entity);
-            if (exists)
-            {
-                // algo más
-            }
-
-            return await UpsertAsync(entity, exists);
+            throw new NotImplementedException();
         }
     }
 }

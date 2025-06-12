@@ -2,8 +2,12 @@
 dotnet add package Microsoft.EntityFrameworkCore.Design
 dotnet add package Microsoft.EntityFrameworkCore.Tools
 dotnet ef dbcontext scaffold "Server=<<servername>>;Database=APDatadb;Trusted_Connection=True;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -o Models
- 
+
+// 
 dotnet ef dbcontext scaffold "Server=LAPTOP-SSTNDH93\SQLEXPRESS;Database=CatalogDB;Trusted_Connection=True;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -o Models
+
+dotnet ef dbcontext scaffold "Server=LAPTOP-SSTNDH93\SQLEXPRESS;Database=CatalogDB;Trusted_Connection=True;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -o Models -t CatalogTasks -f
+dotnet ef dbcontext scaffold "Server=XXXXX;Database=CatalogDB;Trusted_Connection=True;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -o Models -t CatalogTasks -f
  
 dotnet tool install --global dotnet-ef
 dotnet tool update --global dotnet-ef

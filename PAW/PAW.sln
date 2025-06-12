@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PAW.Architecture", "PAW.Arc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PAW.Core", "PAW.Core\PAW.Core.csproj", "{BD54A689-73B9-4742-AF1E-2A071CBA2DAF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PAW.MinimalApi", "PAW.MinimalApi\PAW.MinimalApi.csproj", "{CCE488DC-85A5-43DB-B005-7A1EBD218632}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{BD54A689-73B9-4742-AF1E-2A071CBA2DAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD54A689-73B9-4742-AF1E-2A071CBA2DAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD54A689-73B9-4742-AF1E-2A071CBA2DAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCE488DC-85A5-43DB-B005-7A1EBD218632}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCE488DC-85A5-43DB-B005-7A1EBD218632}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCE488DC-85A5-43DB-B005-7A1EBD218632}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCE488DC-85A5-43DB-B005-7A1EBD218632}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
