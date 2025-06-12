@@ -12,7 +12,8 @@ public interface ICatalogFactory
     IEntity CreateEntity<T>(string name) where T : class, new();
 }
 
-public abstract class CatalogFactory : ICatalogFactory
+// Antes: public abstract
+public class CatalogFactory : ICatalogFactory
 {
     public virtual IEntity CreateEntity<T>() where T : class, new()
     {

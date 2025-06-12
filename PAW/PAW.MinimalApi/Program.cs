@@ -1,3 +1,6 @@
+using PAW.MinimalApi.Factory;
+using PAW.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,7 +10,20 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Nuevo
+builder.Services.AddScoped<ICatalogFactory, CatalogFactory>();  
+
 var app = builder.Build();
+
+
+// Nuevo
+using (var scope = app.Services.CreateScope())
+{
+    var factory = scope.ServiceProvider.GetService<ICatalogFactory>();
+    var entity = factory.CreateEntity<PAW.Models.Entities.CatalogTask>();
+    Console.WriteLine($"Entidad creada: {entity}");
+}
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

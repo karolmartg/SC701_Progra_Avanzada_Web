@@ -1,9 +1,10 @@
-﻿using System;
+﻿using PAW.Models.PAWModels;
+using System;
 using System.Collections.Generic;
 
-namespace PAW.Data.Models;
+namespace PAW.Models.Entities;
 
-public partial class CatalogTask
+public partial class CatalogTask : Entity
 {
     public decimal Id { get; set; }
 

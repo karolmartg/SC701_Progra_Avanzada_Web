@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using PAW.Data.Models;
 using PAW.Models.Entities;
 
 namespace PAW.Models;
