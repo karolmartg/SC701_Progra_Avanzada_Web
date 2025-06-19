@@ -179,6 +179,7 @@ public abstract class RepositoryBase<T> : IRepositoryBase<T> where T : class
         }
         catch (Exception ex)
         {
+            Console.WriteLine(ex.Message);
             throw new PAWException(ex);
         }
     }

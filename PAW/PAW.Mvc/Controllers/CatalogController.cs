@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using APW.Architecture;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using PAW.Models.Entities;
+using PAW.Models;
 using PAW.Services;
 using PAW.Mvc.Helper.Converters;
 
@@ -14,57 +14,23 @@ namespace PAW.Mvc.Controllers
 {
     public class CatalogController(ICatalogService catalogService) : Controller
     {
-
-        public async Task<IActionResult> All()
-        {
-            var catalogs = await catalogService.GetCatalogsAsync();
-            return View("~/Views/Catalog/All.cshtml", catalogs.Select(Converter.ToCatalogViewModel));
-        }
-
         // GET: Catalog
         public async Task<IActionResult> Index()
         {
-            var catalogs = await catalogService.GetCatalogsAsync();
-            return View(catalogs);
-        }
-
-        // GET: Catalog/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
+            try
             {
-                return NotFound();
+                //throw new Exception("lalalala");
+
+                var catalogs = await catalogService.GetCatalogsAsync();
+                return View(catalogs);
             }
-
-            var catalog = await catalogService.GetCatalogAsync(id ?? 0);
-
-            if (catalog == null)
+            catch (Exception ex)
             {
-                return NotFound();
+                TempData["ErrorMessage"] = $@"An unexpected error has occured. Double check with your IT Admnin. Detail: {ex.Message}";
+                Console.WriteLine(ex.ToString());
+
+                return View(Enumerable.Empty<Catalog>());
             }
-
-            return View(catalog);
-        }
-
-        // GET: Catalog/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Catalog/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Identifier,Name,Modified")] Catalog catalog)
-        {
-            //if (ModelState.IsValid)
-            //{
-                var result = await catalogService.SaveCatalogAsync([catalog]);
-                return RedirectToAction(nameof(Index));
-           // }
-            return View(catalog);
         }
 
         // GET: Catalog/Edit/5
@@ -89,44 +55,20 @@ namespace PAW.Mvc.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Identifier,Name,Modified")] Catalog catalog)
+        public async Task<IActionResult> Save([FromBody] Catalog catalog)
         {
-            if (id != catalog.Identifier)
+            try
             {
-                return NotFound();
-            }
+                var result = await catalogService.SaveCatalogAsync([catalog]);
 
-            if (ModelState.IsValid)
+                if (result) TempData["ErrorMessage"] = $@"ITem has been saved succesfully";
+            }
+            catch
             {
-                try
-                {
-                    var result = await catalogService.SaveCatalogAsync([catalog]);
-
-                }
-                catch
-                {
-                    throw;
-                }
-                return RedirectToAction(nameof(Index));
+                throw;
             }
-            return View(catalog);
-        }
+            return await Index();
 
-        // GET: Catalog/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-
-            var catalog = await catalogService.GetCatalogAsync((int)id);
-
-            if (catalog == null) return NotFound();
-
-            return View(catalog);
         }
 
         // POST: Catalog/Delete/5

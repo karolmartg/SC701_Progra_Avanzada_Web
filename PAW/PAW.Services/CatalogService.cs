@@ -1,7 +1,8 @@
 ﻿using APW.Architecture;
 using PAW.Architecture;
 using PAW.Architecture.Providers;
-using PAW.Models.Entities;
+using PAW.Models;
+
 
 namespace PAW.Services
 {

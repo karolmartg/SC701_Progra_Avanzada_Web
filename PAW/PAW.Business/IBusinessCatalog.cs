@@ -1,4 +1,4 @@
-﻿using PAW.Models.Entities;
+﻿using PAW.Models;
 
 internal interface IBusinessCatalog
 {

@@ -1,5 +1,9 @@
+using Microsoft.EntityFrameworkCore;
+using PAW.Business;
 using PAW.MinimalApi.Factory;
 using PAW.Models;
+
+using PAW.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,20 +14,42 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Nuevo
-builder.Services.AddScoped<ICatalogFactory, CatalogFactory>();  
+// Esto es otra forma de hacerlo con Factory:
+builder.Services.AddScoped<ICatalogFactory, CatalogFactory>();
+
+builder.Services.AddScoped<IBusinessCatalog, BusinessCatalog>();
+builder.Services.AddScoped<IRepositoryCatalog, RepositoryCatalog>();
+
+
+// Connection with API
+builder.Services.AddDbContext<CatalogDbContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("CatalogConnection")));
 
 var app = builder.Build();
 
+// Forma sin Factory
 
-// Nuevo
-using (var scope = app.Services.CreateScope())
+app.MapGet("/catalog", async (IBusinessCatalog business) =>
 {
-    var factory = scope.ServiceProvider.GetService<ICatalogFactory>();
-    var entity = factory.CreateEntity<PAW.Models.Entities.CatalogTask>();
-    Console.WriteLine($"Entidad creada: {entity}");
-}
+    return await business.GetAllCatalogsAsync();
+});
 
+
+// Otra forma de hacerlo con Factory:
+/*
+app.MapGet("/catalog", async (ICatalogFactory factory, IBusinessCatalog business) =>
+{
+    var catalog = factory.CreateEntity<Catalog>() as Catalog;
+    await business.GetAllCatalogsAsync();
+});
+
+app.MapPut("/catalog", async (Catalog? catalog, ICatalogFactory factory, IBusinessCatalog business) =>
+{
+    catalog ??= factory.CreateEntity<Catalog>() as Catalog;
+
+    factory.ApplyAuditing(catalog, string.Empty, isInserting: false);
+    await business.SaveCatalogAsync(catalog);
+});
+*/
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

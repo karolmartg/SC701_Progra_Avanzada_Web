@@ -1,4 +1,5 @@
 using PAW.Business;
+using PAW.Models;
 using PAW.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);

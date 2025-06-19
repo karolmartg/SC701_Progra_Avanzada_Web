@@ -1,4 +1,4 @@
-﻿using PAW.Models.Entities;
+﻿using PAW.Models;
 using PAW.Mvc.Models;
 
 namespace PAW.Mvc.Helper.Converters

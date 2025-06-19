@@ -1,36 +1,75 @@
-﻿@model IEnumerable<PAW.Models.Entities.Catalog>
+﻿@model IEnumerable<PAW.Models.Catalog>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Catalogs</h1>
+<hr />
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+<table class="table table-condensed table-bordered table-dark table-hover">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th></th>
+            <th>Id</th>
+
+            <th>Name</th>
+            <th>Description</th>
+            <th>SKU</th>
+            <th>Created Date</th>
+            <th>Rating</th>
+            <th>Actions</th>
         </tr>
     </thead>
+
     <tbody>
-        @foreach (var item in Model)
-        {
+        @foreach (var c in Model) {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Identifier">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Identifier">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Identifier">Delete</a>
-                </td>
+                <td><input type="text" class="form-control" name="identifier" value="@c.Identifier" /></td>
+                <td><input type="text" class="form-control" name="name" value="@c.Name" /></td>
+                <td><input type="text" class="form-control" name="description" value="@c.Description" /></td>
+                <td><input type="text" class="form-control" name="sku" value="@c.Sku" /></td>
+                <td><input type="text" class="form-control" name="created-date" value="@c.CreatedDate" /></td>
+                <td><input type="text" class="form-control" name="rating" value="@c.Rating" /></td>
+                <td><button onclick="save()" class="btn btn-primary">Save</button></td>
+                <td><button onclick="delete(@c.Identifier)" class="btn btn-danger">Delete</button></td>
             </tr>
         }
     </tbody>
 </table>
+
+@section Scripts {
+    <script>
+        function save() {
+            const button = event.target;
+            const row = button.closest("tr");
+
+            const item = {
+                Identifier: row.querySelector('[name="identifier"]').value,
+                Name: row.querySelector('[name="name"]').value,
+                Description: row.querySelector('[name="description"]').value,
+                Sku: row.querySelector('[name="sku"]').value,
+                CreatedDate: row.querySelector('[name="created-date"]').value,
+                Rating: row.querySelector('[name="rating"]').value
+            }
+
+            fetch("catalog/Save", {
+                method: "POST",
+                headers: {
+                    "Contet-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify(item)
+            })
+            .then(response => response.json())
+            .then(data => {
+                debbuger;
+                console.log("Saved:", data);
+                alert("Row Saved succesfully!")
+            })
+            .catch(error => {
+                console.log(error)
+            })
+        }
+
+    </script>
+}

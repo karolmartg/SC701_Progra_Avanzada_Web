@@ -20,3 +20,19 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+header {
+    background:  #222 !important;
+}
+
+
+.custom-header {
+    background: #222 !important;
+}
+
+.text-for-dark {
+    color: #ccc;
+    font-family: "Segoe UI";
+    font-weight: 400;
+    font-size: 12px;
+}
